@@ -2,48 +2,68 @@ package com.catalogo.catalogobackend.models;
 
 import java.io.Serializable;
 
+import org.hibernate.sql.Insert;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 @Entity
-public class Catalogo implements Serializable  {
+
+@Table(name = "Catalogo")
+
+public class Catalogo {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private long id;
+
+    @Column(name = "marca", length = 150, nullable = true)
     private String marca;
+
+    @Column(name = "modelo", length = 150, nullable = true)
     private String modelo;
-    private String descripcion;
+
+    @Column(name = "detalle", length = 350, nullable = true)
+    private String detalle;
+
+    @Column(name = "precio", length = 100, nullable = true)
     private Double precio;
+
+    @Column(name = "grupo", length = 100, nullable = true)
+    private String grupo;
+
+    @Column(name = "imageUrl", length = 100, nullable = true)
+    private String imageUrl;
+
+    @Column(name = "catalogoCode", length = 100, nullable = true)
+    private String catalogoCode;
+
     private String imagenUrl;
 
-    @Column (nullable = false, updatable = false)
+    
 
-    private String catalogoCode;
-    public Catalogo (){}
-
-    public Catalogo(String marca,String modelo,String descripcion,Double precio,String imagenUrl){
-        
-    }
-
-    public Catalogo(Long id, String marca, String modelo, String descripcion, Double precio, String imagenUrl,
+    public Catalogo(Long id, String marca, String modelo, String detalle, Double precio, String imagenUrl, String grupo,
             String catalogoCode) {
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;
-        this.descripcion = descripcion;
+        this.detalle = detalle;
         this.precio = precio;
         this.imagenUrl = imagenUrl;
+        this.grupo = grupo;
         this.catalogoCode = catalogoCode;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -63,12 +83,12 @@ public class Catalogo implements Serializable  {
         this.modelo = modelo;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDetalle() {
+        return detalle;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
     }
 
     public Double getPrecio() {
@@ -79,34 +99,18 @@ public class Catalogo implements Serializable  {
         this.precio = precio;
     }
 
-    public String getImagenUrl() {
-        return imagenUrl;
+    public String getGrupo() {
+        return grupo;
     }
 
-    public void setImagenUrl(String imagenUrl) {
-        this.imagenUrl = imagenUrl;
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
     }
 
-    public String getCatalogoCode() {
-        return catalogoCode;
+    public void setCatalogoCode(String string) {
     }
 
-    public void setCatalogoCode(String catalogoCode) {
-        this.catalogoCode = catalogoCode;
-    }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ",precio='" +precio + '\'' +
-                ", imagenUrl='" + imagenUrl + '\'' +
-                '}';
 
-    }
 
-    
 }
