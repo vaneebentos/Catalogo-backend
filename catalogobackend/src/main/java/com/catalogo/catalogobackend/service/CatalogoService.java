@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.catalogo.catalogobackend.Exception.CatalogoNotFoundException;
 import com.catalogo.catalogobackend.Repositories.CatalogoRepository;
@@ -13,35 +14,48 @@ import com.catalogo.catalogobackend.models.Catalogo;
 
 @Service
 @Transactional
+
 public class CatalogoService {
-    private final CatalogoRepository catalogo;
+    private final CatalogoRepository catalogoRepository;
 
     @Autowired
     public CatalogoService(CatalogoRepository catalogoRepository) {
-        this.catalogo = catalogoRepository;
+        this.catalogoRepository = catalogoRepository;
 
     }
 
     public Catalogo addCatalogo(Catalogo catalogo) {
-        catalogo.setCatalogoCode(UUID.randomUUID().toString());
-        return this.catalogo.save(catalogo);
+        //Catalogo producto = new Catalogo();
+
+
+        return catalogoRepository.save(catalogo);
     }
 
     public List<Catalogo> findALLCatalogo() {
-        return catalogo.findAll();
+        return catalogoRepository.findAll();
     }
 
     public Catalogo updateCatalogo(Catalogo catalogo) {
-        return this.catalogo.save(catalogo);
+        return this.catalogoRepository.save(catalogo);
     }
 
-    public Catalogo findCatalogoById(Long id) {
-        return catalogo.findCatalogoById(id)
-                .orElseThrow(() -> new CatalogoNotFoundException("User by id" + id + "was not found"));
+   
+
+    public List<Catalogo> findCatalogosByGrupo(String grupo, Long id) {
+        return catalogoRepository.findByGrupo(grupo);
+        
     }
+              
+    
 
     public void deleteCatalogo(Long id) {
-        catalogo.deleteCatalogoById(id);
+        catalogoRepository.deleteCatalogoById(id);
+    }
+    public String obtenerUrlImagen(Long id) {
+        Catalogo catalogo = catalogoRepository.findById(id)
+                .orElseThrow(() -> new CatalogoNotFoundException("Producto no encontrado"));
+
+        return catalogo.getImagenUrl();
     }
 
 }

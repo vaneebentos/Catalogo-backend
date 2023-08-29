@@ -13,15 +13,13 @@ import jakarta.persistence.Table;
 
 @Entity
 
-@Table(name = "Catalogo")
+@Table(name = "catalogos")
 
 public class Catalogo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private long id;
-
+    private Long id;
     @Column(name = "marca", length = 150, nullable = true)
     private String marca;
 
@@ -36,19 +34,12 @@ public class Catalogo {
 
     @Column(name = "grupo", length = 100, nullable = true)
     private String grupo;
-
-    @Column(name = "imageUrl", length = 100, nullable = true)
-    private String imageUrl;
-
-    @Column(name = "catalogoCode", length = 100, nullable = true)
-    private String catalogoCode;
-
+  
     private String imagenUrl;
 
     
 
-    public Catalogo(Long id, String marca, String modelo, String detalle, Double precio, String imagenUrl, String grupo,
-            String catalogoCode) {
+    public Catalogo(Long id, String marca, String modelo, String detalle, Double precio, String imagenUrl, String grupo) {
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;
@@ -56,7 +47,10 @@ public class Catalogo {
         this.precio = precio;
         this.imagenUrl = imagenUrl;
         this.grupo = grupo;
-        this.catalogoCode = catalogoCode;
+    }
+
+    public Catalogo() {
+
     }
 
     public long getId() {
@@ -107,7 +101,12 @@ public class Catalogo {
         this.grupo = grupo;
     }
 
-    public void setCatalogoCode(String string) {
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
     }
 
 
