@@ -1,5 +1,6 @@
 package com.catalogo.catalogobackend.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,8 +26,7 @@ public class CatalogoService {
     }
 
     public Catalogo addCatalogo(Catalogo catalogo) {
-        //Catalogo producto = new Catalogo();
-
+        // Catalogo producto = new Catalogo();
 
         return catalogoRepository.save(catalogo);
     }
@@ -39,18 +39,15 @@ public class CatalogoService {
         return this.catalogoRepository.save(catalogo);
     }
 
-   
-
     public List<Catalogo> findCatalogosByGrupo(String grupo, Long id) {
         return catalogoRepository.findByGrupo(grupo);
-        
+
     }
-              
-    
 
     public void deleteCatalogo(Long id) {
         catalogoRepository.deleteCatalogoById(id);
     }
+
     public String obtenerUrlImagen(Long id) {
         Catalogo catalogo = catalogoRepository.findById(id)
                 .orElseThrow(() -> new CatalogoNotFoundException("Producto no encontrado"));
@@ -58,4 +55,18 @@ public class CatalogoService {
         return catalogo.getImagenUrl();
     }
 
+    public Catalogo findById(Long id) {
+        return catalogoRepository.findById(id).orElse(null);
+    }
+
+    public Catalogo save(Catalogo catalogo) {
+        return this.catalogoRepository.save(catalogo);
+    }
+    /*
+     * public Catalogo actualizarCatalogo(Catalogo catalogo){
+     * catalogo.setFechaActualizacion(new Date());
+     * return catalogoRepository.save(catalogo);
+     * 
+     * }
+     */
 }
