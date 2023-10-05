@@ -98,7 +98,7 @@ public class CatalogoResources {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    String uploadDir = "catalogobackend/src/imagen"; // carpeta donde se almacenan las imágenes
+    String uploadDir = "C:\\Users\\usuario\\OneDrive - frvt.utn.edu.ar\\Escritorio\\Documentos\\GIT\\PPES\\Catalogo-backend\\catalogobackend\\src\\imagen"; // carpeta donde se almacenan las imágenes
 
     @GetMapping("/catalogos/imagen/{imageName}")
     public ResponseEntity<Resource> getImage(@PathVariable String imageName) {
