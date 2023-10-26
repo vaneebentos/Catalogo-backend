@@ -17,6 +17,12 @@ public class CatalogobackendApplication {
 
         }
 
+       /**
+        * Esta función crea un Corsfilter en Java que permite solicitudes de origen cruzado de
+        * http: // localhost: 4200 y establece los encabezados permitidos, encabezados expuestos y métodos permitidos.
+        *
+        * @return El código está devolviendo un objeto Corsfilter.
+        */
         @Bean
 
         public CorsFilter corsFilter() {

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.catalogo.catalogobackend.models.Catalogo;
 
+// El fragmento de código está definiendo una interfaz de repositorio llamada `catalogorepospository` que extiende la
+// interfaz jParepository`.
 @Repository
 public interface CatalogoRepository extends JpaRepository<Catalogo, Long> {
     List<Catalogo> findByGrupo(String grupo);

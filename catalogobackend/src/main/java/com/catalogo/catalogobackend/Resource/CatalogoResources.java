@@ -35,6 +35,9 @@ import com.catalogo.catalogobackend.models.Catalogo;
 import com.catalogo.catalogobackend.service.CatalogoService;
 
 import org.springframework.util.StringUtils;
+// La anotación `@RestController` se usa para indicar que la clase es un controlador RESTful.Él
+// Combina las anotaciones `@controlador` y`@ResponseBody`, lo que significa que los métodos en esto
+// La clase manejará las solicitudes HTTP y devolverá la respuesta directamente como el cuerpo de la respuesta.
 
 @RestController
 @RequestMapping("/api/v1")
@@ -50,12 +53,16 @@ public class CatalogoResources {
     /*
      * @Value("${image.upload.dir}")
      * private String uploadDir;
-     */
+    */
+    // El método `@getmapping ("/catalogos ")` se usa para manejar las solicitudes de obtener el "/Catalogos"
+    // Recupera todos los catálogos del catalogoservicio y los devuelve como un
+    // ResponderEntity con un estado de OK.
     @GetMapping("/catalogos")
     public ResponseEntity<List<Catalogo>> getAllCatalogos() {
         List<Catalogo> catalogos = catalogoService.findALLCatalogo();
         return new ResponseEntity<>(catalogos, HttpStatus.OK);
     }
+
 
     @GetMapping("/catalogos/{grupo}")
     public ResponseEntity<List<Catalogo>> getCatalogosByGrupo(@PathVariable("grupo") String grupo) {
@@ -76,7 +83,7 @@ public class CatalogoResources {
         String imagenUrl = catalogoService.obtenerUrlImagen(id);
         return ResponseEntity.ok(imagenUrl);
     }
-
+    
     @PostMapping("/add")
     public ResponseEntity<Catalogo> addCatalogo(@RequestBody Catalogo catalogo) {
         Catalogo newCatalogo = catalogoService.addCatalogo(catalogo);
